@@ -1,0 +1,52 @@
+{%extends 'main_app/layout.html'%}
+{%load static%}
+
+<!-- Hero Start -->
+{%block "titlepage"%}
+درباره ما
+{%endblock%}
+
+{%block "homepage"%}
+خانه
+{%endblock%}
+
+{%block "titlepage2"%}
+ درباره ما
+{%endblock%}
+<!-- Hero End -->
+
+<!-- content Start -->
+{%block "content"%}
+
+    <!-- About Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" style="direction: rtl;">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-7">
+                    <div class="section-title mb-4">
+                        <h5 class="position-relative d-inline-block text-primary text-uppercase">   {{cnt.0.title}}</h5>
+                        
+                    </div>
+                    <h4 class="text-body fst-italic mb-4"></h4>
+                    <p class="mb-4"> {{cnt.0.txt|safe}} </p>
+                   <p class="mb-4">
+                    </p>
+                   <div class="row g-3">
+                    
+                    </div>
+                  
+                </div>
+                <div class="col-lg-5" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="{{ph.0.img.url}}" alt="روانشناسی" style="object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+    {%endblock%}
+    <!-- content End -->
+    
+
+  

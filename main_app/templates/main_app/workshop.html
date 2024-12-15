@@ -1,0 +1,76 @@
+{%extends "main_app/layout.html"%}
+{% load static %}
+
+<!-- Hero Start -->
+{%block "titlepage"%}
+برگزاری کارگاه
+{%endblock%}
+
+{%block "homepage"%}
+خانه
+{%endblock%}
+
+{%block "titlepage2"%}
+برگزاری کارگاه
+{%endblock%}
+<!-- Hero End -->
+
+<!-- content Start -->
+{%block "content"%}
+
+    <!-- Pricing Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" >
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5" style="direction: rtl;">
+                    <div class="section-title mb-4">
+                        <h5 class="position-relative d-inline-block text-primary text-uppercase" style="margin-right: 40px;">  {{cnt.0.title}} </h5>
+                    </div>
+                    <p class="mb-4">{{cnt.0.txt|safe}} </p>
+                    <p class="mb-4">
+
+                   </p>
+                   <br/><br/><br/><br/>
+                   <div class="section-title mb-4">
+                   <h5 class="position-relative d-inline-block text-primary text-uppercase" style="margin-right: 40px;">دسته بندی کارگاه های آموزشی</h5>
+                   <ul>
+                    گارگاه مورد نظر خود انتخاب کنید:
+                    {%for i in cw%}
+                    <li><a href="/categoryw/{{i.id}}">{{i.title}}</a></li>
+                    {%endfor%} 
+                    <li><a href="/workshop">نمایش همه کارگاه ها</a></li>           
+                   </div>
+                </div>
+                <div class="col-lg-7"  >
+                    <div class="owl-carousel price-carousel wow zoomIn" data-wow-delay="0.9s">
+                        {%for i in w%}
+                        <div class="price-item pb-4">
+                            <div class="position-relative" >
+                                <img class="img-fluid rounded-top " src="{{i.img.url}}" alt="" >
+                                <div class="d-flex align-items-center justify-content-center bg-light rounded pt-2 px-3 position-absolute top-100 start-50 translate-middle" style="z-index: 2;">
+                                    تومان<h2 class="text-primary m-0" >  {{i.price}} </h2>
+                                </div>
+                            </div>
+                            <div class="position-relative text-center bg-light border-bottom border-primary py-5 p-4" style="direction: rtl;">
+                                <h6>{{i.title}}</h6>
+                                <hr class="text-primary w-50 mx-auto mt-0">
+                                <div class="d-flex justify-content-between mb-3"><span>شروع:{{i.startw}} </span><i class="fa fa-check text-primary pt-1"></i></div>
+                                <div class="d-flex justify-content-between mb-3"><span>تعداد جلسات:{{i.numbsession}}</span><i class="fa fa-check text-primary pt-1"></i></div>
+                                <div class="d-flex justify-content-between mb-2"><span>تعداد شرکت کنندگان:{{i.numbparticipants}}</span><i class="fa fa-check text-primary pt-1"></i></div>
+                                <a href="appointment.html" class="btn btn-primary py-2 px-4 position-absolute top-100 start-50 translate-middle">ثبت نام</a>
+                            </div>
+                        </div>
+                        {%endfor%}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pricing End -->
+ 
+    
+<!-- content End -->
+ 
+
+{%endblock%}
