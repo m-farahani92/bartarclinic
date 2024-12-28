@@ -16,12 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from main_app.views import home,therapy,workshop,categoryw,team,about,contact,psychopathy,test,article,gallery,rules,register
+from main_app.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+from main_app import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
+    path('', home, name=" "),
     path('therapy/', therapy),
     path('workshop/', workshop),
     path('categoryw/<adad>', categoryw),
@@ -34,4 +36,9 @@ urlpatterns = [
     path('gallery/', gallery),
     path('rules/', rules),
     path('register/', register),
+    path('login/', login ,name="login"),
+    path('logout/', logout ,name="logout"),
+    path('dashboard/', dashboard ,name="dashboard"),
+    path("get-schedule/", views.get_schedule_by_therapist, name="get_schedule"),
+   
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

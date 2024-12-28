@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import *
+from jalali_date.admin import ModelAdminJalaliMixin
 
-from .forms import ScheduleForm
 
 
 
@@ -14,19 +14,18 @@ admin.site.register(categorywsClass)
 admin.site.register(workshopClass)
 admin.site.register(therapeutistClass)
 admin.site.register(appointmentClass)
-admin.site.register(registerClass)
-@admin.register(scheduleClass)
-class ScheduleAdmin(admin.ModelAdmin):
-    form = ScheduleForm
-    
-class ScheduleAdmin(admin.ModelAdmin):
-    class Media:
-        css = {
-            'all': ['https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css']
-        }
-        js = [
-            'https://cdn.jsdelivr.net/npm/flatpickr',  
-            '/static/main_app/js/flatpickr-init.js'      
-        ]
+admin.site.register(customuserClass)
+
+
+class ScheduleAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
+    list_display = ('therapeutist', 'jalali_date', 'start_time', 'end_time')
+
+    def jalali_date(self, obj):
+        return obj.date.strftime('%Y/%m/%d')  
+
+    jalali_date.short_description = 'تاریخ (شمسی)'
+
+admin.site.register(scheduleClass, ScheduleAdmin)
+
 
     

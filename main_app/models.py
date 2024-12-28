@@ -1,5 +1,7 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from django_jalali.db import models as jmodels
+from django.contrib.auth.models import AbstractUser
 
 class contactClass (models.Model):
     username=models.CharField(max_length=50)  
@@ -69,24 +71,16 @@ class therapeutistClass(models.Model):
     )    
     def __str__(self):
         return self.name
-    
 
-class registerClass(models.Model):
-    fname=models.CharField(max_length=30)
-    lname=models.CharField(max_length=50)
-    username=models.CharField(max_length=50)
-    email=models.EmailField(max_length=50)
-    mobile=models.IntegerField(max_length=11)
-    address=models.CharField(max_length=250)
-    passw=models.CharField(max_length=16)
-    confirmpassw=models.CharField(max_length=16)
-    def __str__(self):
-        return self.ussername
-    
-    
+
+roleitems=(("therapeutist","درمانگر"),("client","مراجعه کننده"))
+class customuserClass(AbstractUser):
+    rolle=models.CharField(max_length=20,choices=roleitems,default="client")
+
+  
 class scheduleClass(models.Model):
     therapeutist = models.ForeignKey(therapeutistClass, on_delete=models.CASCADE, related_name="schedules", verbose_name="درمانگر")
-    date = models.DateField(verbose_name="تاریخ")
+    date = jmodels.jDateField(verbose_name="تاریخ")    
     start_time = models.TimeField(verbose_name="زمان شروع")
     end_time = models.TimeField(verbose_name="زمان پایان")
     def __str__(self):
@@ -95,17 +89,12 @@ class scheduleClass(models.Model):
    
     
 class appointmentClass(models.Model):
-    category=models.ForeignKey(categoryClass,on_delete=models.CASCADE, related_name="service",null=True)
+    service=models.ForeignKey(serviceClass,on_delete=models.CASCADE, related_name="service",null=True)
     therapeutist=models.ForeignKey(therapeutistClass,on_delete=models.CASCADE, related_name="therapeutist")
     schedule = models.ForeignKey(scheduleClass, on_delete=models.CASCADE, related_name="appointments", null=True)
-    date = models.DateField(verbose_name="تاریخ حضور", default=None)
-    start_time = models.TimeField(verbose_name="زمان شروع حضور", default=None)
-    end_time = models.TimeField(verbose_name="زمان پایان حضور", default=None)
-    username=models.CharField(max_length=50)  
     fullname=models.CharField(max_length=50)  
-    def save(self, *args, **kwargs):
-        if self.schedule:
-            self.date = self.schedule.date
-            self.start_time = self.schedule.start_time
-            self.end_time = self.schedule.end_time
-        super().save(*args, **kwargs)
+
+        
+  
+
+    

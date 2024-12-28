@@ -21,31 +21,32 @@
 <div style=" display: flex;justify-content: center; align-items: center; direction:rtl">
     <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.3s">
         <h5 class="position-relative d-inline-block text-primary text-uppercase">"لطفا جهت ثبت نام ، فرم زیر را تکمیل کنید"</h5>
-        <form>
+        <form method="post">
+            {% csrf_token %}
             <div class="row g-3">
                 <div class="col-12">
-                    <input type="text" class="form-control border-0 bg-light px-4" placeholder=" نام" style="height: 55px; "name="fname"; required="True">
+                    <input type="text" class="form-control border-0 bg-light px-4" placeholder=" نام" style="height: 55px; "name="fname" id="fname" required="True">
                 </div>
                 <div class="col-12">
-                    <input type="text" class="form-control border-0 bg-light px-4" placeholder=" نام خانوادگی " style="height: 55px; "name="lname"; required="True">
+                    <input type="text" class="form-control border-0 bg-light px-4" placeholder=" نام خانوادگی " style="height: 55px; "name="lname" id="lname" required="True">
                 </div>
                 <div class="col-12">
-                    <input type="text" class="form-control border-0 bg-light px-4" placeholder="  نام کاربری" style="height: 55px; "name="username"; required="True">
+                    <input type="text" class="form-control border-0 bg-light px-4" placeholder="  نام کاربری" style="height: 55px; "name="username" id="username" required="True">
                 </div>
                 <div class="col-12">
-                    <input type="email" class="form-control border-0 bg-light px-4" placeholder=" آدرس ایمیل" style="height: 55px; "name="email"; required="True">
+                    <input type="email" class="form-control border-0 bg-light px-4" placeholder=" آدرس ایمیل" style="height: 55px; "name="email" id="email" required="True">
+                </div>
+                <!-- <div class="col-12">
+                    <input type="text" class="form-control border-0 bg-light px-4 " placeholder=" شماره تلفن همراه" style="height: 55px; "name="mobile" id="mobile" required="True">
                 </div>
                 <div class="col-12">
-                    <input type="text" class="form-control border-0 bg-light px-4 " placeholder=" شماره تلفن همراه" style="height: 55px; "name="mobile"; required="True">
-                </div>
+                    <textarea  class="form-control border-0 bg-light px-4 py-3" rows="5" placeholder=" نشانی" name="address"  id="address" required="True"></textarea>
+                </div> -->
                 <div class="col-12">
-                    <textarea  class="form-control border-0 bg-light px-4 py-3" rows="5" placeholder=" نشانی" name="address"; required="True"></textarea>
-                </div>
-                <div class="col-12">
-                    <input type="password" class="form-control border-0 bg-light px-4" placeholder=" رمز عبور" style="height: 55px; "name="passw"; required="True">
+                    <input type="password" class="form-control border-0 bg-light px-4" placeholder=" رمز عبور" style="height: 55px; "name="passw" id="passw" required="True">
                 </div>                
                 <div class="col-12">
-                    <input type="password" class="form-control border-0 bg-light px-4" placeholder=" تکرار رمز عبور" style="height: 55px; "name="confirmpassw"; required="True">
+                    <input type="password" class="form-control border-0 bg-light px-4" placeholder=" تکرار رمز عبور" style="height: 55px; "name="confirmpassw" id="confirmpassw"required="True">
                 </div>
 
                 <div class="col-12">

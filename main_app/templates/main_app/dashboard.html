@@ -1,0 +1,40 @@
+{%extends "main_app/layout.html"%}
+{% load static %}
+
+<!-- Hero Start -->
+{%block "titlepage"%}
+ورود
+{%endblock%}
+
+{%block "homepage"%}
+خانه
+{%endblock%}
+
+
+{%block "titlepage2"%}
+ورود
+{%endblock%}
+<!-- Hero End -->
+
+ <!-- content Start -->
+ {%block "content"%}
+ <div style=" display: flex;justify-content: center; align-items: center; direction:rtl">
+    <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.3s">
+        <h5 class="position-relative d-inline-block text-secondary " >" {{user}} عزیز خوش آمدید  "</h5>
+        <br/>
+        <br/>
+        <h5 class="position-relative d-inline-block text-primary text-uppercase" ><a href="/logout" >خروج</a></h5>
+    </div>  
+</div>     
+
+
+
+
+
+ <div>
+
+    
+ </div>
+
+
+{%endblock%}

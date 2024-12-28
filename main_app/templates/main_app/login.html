@@ -18,7 +18,28 @@
 
  <!-- content Start -->
  {%block "content"%}
-
+ <div style=" display: flex;justify-content: center; align-items: center; direction:rtl">
+    <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.3s">
+        <h5 class="position-relative d-inline-block text-primary text-uppercase">"لطفا جهت ورود ، نام کاربری و رمز عبور  را وارد کنید"</h5>
+        <form method="post">
+            {% csrf_token %}
+            <div class="row g-3">
+                <div class="col-12">
+                    <input type="text" class="form-control border-0 bg-light px-4" placeholder="  نام کاربری" style="height: 55px; "name="username" id="username" required="True">
+                </div>
+                <div class="col-12">
+                    <input type="password" class="form-control border-0 bg-light px-4" placeholder=" رمز عبور" style="height: 55px; "name="passw" id="passw" required="True">
+                </div>                
+                <div class="col-12">
+                    <button class="btn btn-primary w-100 py-3" type="submit">ورود</button>
+                </div>
+                <div class="col-12" style="color:#F57E57">
+                    {{massage}}            
+                </div> 
+            </div>
+        </form>
+    </div>  
+</div>        
            
 
 

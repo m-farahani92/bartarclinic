@@ -73,7 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bartarclinic.wsgi.application'
 
-
+LOGIN_URL='/login'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa'
 
 TIME_ZONE = 'Asia/Tehran'
 TIME_FORMAT = 'H:i' 
@@ -131,3 +131,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL="media/"
 import os
 MEDIA_ROOT=os.path.join(BASE_DIR,"media")
+
+AUTH_USER_MODEL="main_app.customuserClass"

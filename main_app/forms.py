@@ -13,20 +13,6 @@ class contactForm (forms.ModelForm):
                  'message':forms.Textarea(attrs={'placeholder':"دیدگاه" , 'class':"form-control border-0 bg-light px-4 py-3", 'rows':"5"}),
                  }
               
-        
-class registerForm (forms.ModelForm):
-    class Meta:
-        model=registerClass
-        fields=['fname','lname','username','email','mobile','address','passw','confirmpassw']
-        widgets={'fname':forms.TextInput(attrs={'placeholder':"نام " , 'class':"form-control border-0 bg-light px-4" , 'style':"height: 55px;", 'required':"True"}),
-                 'lname':forms.TextInput(attrs={'placeholder':"نام خانوادگی  " , 'class':"form-control border-0 bg-light px-4" , 'style':"height: 55px;", 'required':"True"}),
-                 'username':forms.TextInput(attrs={'placeholder':"نام کاربری" , 'class':"form-control border-0 bg-light px-4" , 'style':"height: 55px;", 'required':"True"}),
-                 'email':forms.EmailInput(attrs={'placeholder':"آدرس ایمیل" , 'class':"form-control border-0 bg-light px-4" , 'style':"height: 55px;", 'required':"True"}),
-                 'mobile':forms.TextInput(attrs={'placeholder':"شماره تلفن همراه" , 'class':"form-control border-0 bg-light px-4" , 'style':"height: 55px;", 'required':"True"}),
-                 'address':forms.Textarea(attrs={'placeholder':"نشانی" , 'class':"form-control border-0 bg-light px-4 py-3", 'rows':"5"}),
-                 'passw':forms.PasswordInput(attrs={'placeholder':"رمز عبور" , 'class':"form-control border-0 bg-light px-4 py-3", 'rows':"5", 'required':"True"}),
-                 'confirmpassw':forms.PasswordInput(attrs={'placeholder':"تکرار رمز عبور" , 'class':"form-control border-0 bg-light px-4 py-3", 'rows':"5", 'required':"True"}), 
-                 }
 
 
 
@@ -40,19 +26,54 @@ class ScheduleForm(forms.ModelForm):
         fields = ['therapeutist', 'date', 'start_time', 'end_time']
         
         
-        
-        
-        
-        
+
 class appointmentForm(forms.ModelForm):
     class Meta:
-        model=appointmentClass
-        fields=['category','therapeutist','date','start_time','end_time','username','fullname']
-        widgets={'category':forms.Select(attrs={'class':"form-select bg-light border-0",'style':"height: 55px;"}),
-                       'therapeutist':forms.Select(attrs={'class':"form-select bg-light border-0",'style':"height: 55px;"}),
-                       'date':forms.DateField(),
-                       'start_time':forms.TimeField(),
-                       'end_time':forms.TimeField(),
-                       'username':forms.TextInput(),
-                       'fullname':forms.TextInput(),
-                 }
+        model = appointmentClass
+        fields = ["service", "therapeutist", "schedule", "fullname"]
+        widgets = {
+            "service": forms.Select(
+                attrs={"class": "form-select bg-light border-0", "style": "height: 55px;"}
+            ),
+            "therapeutist": forms.Select(
+                attrs={"class": "form-select bg-light border-0", "style": "height: 55px;"}
+            ),
+            "schedule": forms.Select(
+                attrs={"class": "form-select bg-light border-0", "style": "height: 55px;"}
+            ),
+            "fullname": forms.TextInput(
+                attrs={"class": "form-control bg-light border-0", "style": "height: 55px;", "placeholder": "نام و نام خانوادگی"}
+            ),
+        }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['service'].queryset = serviceClass.objects.filter(category_id=1)
+        self.fields['service'].empty_label ="نوع مشاوره"
+        self.fields['therapeutist'].empty_label =" درمانگر"
+        self.fields['schedule'].empty_label ="زمان مشاوره "
+
+        
+class appointmentForm2(forms.ModelForm):
+    class Meta:
+        model = appointmentClass
+        fields = ["service", "therapeutist", "schedule", "fullname"]
+        widgets = {
+            "service": forms.Select(
+                attrs={"class": "form-select bg-light border-0", "style": "height: 55px;"}
+            ),
+            "therapeutist": forms.Select(
+                attrs={"class": "form-select bg-light border-0", "style": "height: 55px;"}
+            ),
+            "schedule": forms.Select(
+                attrs={"class": "form-select bg-light border-0", "style": "height: 55px;"}
+            ),
+            "fullname": forms.TextInput(
+                attrs={"class": "form-control bg-light border-0", "style": "height: 55px;", "placeholder": "نام و نام خانوادگی"}
+            ),
+        }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['service'].queryset = serviceClass.objects.filter(category_id=2)
+        self.fields['service'].empty_label ="نوع اختلال"
+        self.fields['therapeutist'].empty_label =" درمانگر"
+        self.fields['schedule'].empty_label ="زمان مشاوره "
