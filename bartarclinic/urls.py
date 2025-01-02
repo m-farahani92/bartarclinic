@@ -39,6 +39,8 @@ urlpatterns = [
     path('login/', login ,name="login"),
     path('logout/', logout ,name="logout"),
     path('dashboard/', dashboard ,name="dashboard"),
+    path('panel/', panel ,name="panel"),
+    path('reserve/', reserve ,name="reserve"),
     path("get-schedule/", views.get_schedule_by_therapist, name="get_schedule"),
    
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

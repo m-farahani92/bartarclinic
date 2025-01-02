@@ -1,0 +1,225 @@
+{% extends "main_app/layout.html" %}
+{% load static %}
+
+{% block "titlepage" %}
+حساب کاربری
+{% endblock %}
+
+{% block "homepage" %}
+خانه
+{% endblock %}
+
+{% block "titlepage2" %}
+حساب کاربری
+
+{% endblock %}
+
+{% block "content" %}
+<div class="container mb-5">
+    <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
+        <!-- تب خوش آمدگویی (پیش‌فرض فعال) -->
+        <li class="nav-item">
+            <a class="nav-link active" id="welcome-tab" data-bs-toggle="tab" href="#welcome" role="tab" aria-controls="welcome" aria-selected="true">خوش آمدگویی</a>
+        </li>
+        <!-- جزئیات کاربری -->
+        <li class="nav-item">
+            <a class="nav-link" id="user-details-tab" data-bs-toggle="tab" href="#user-details" role="tab" aria-controls="user-details" aria-selected="false">جزئیات کاربری</a>
+        </li>
+        <!-- نوبت‌های من -->
+        <li class="nav-item">
+            <a class="nav-link" id="appointments-tab" data-bs-toggle="tab" href="#appointments" role="tab" aria-controls="appointments" aria-selected="false">نوبت‌های من</a>
+        </li>
+        <!-- کارگاه‌ها -->
+        <li class="nav-item">
+            <a class="nav-link" id="workshops-tab" data-bs-toggle="tab" href="#workshops" role="tab" aria-controls="workshops" aria-selected="false">کارگاه‌ها</a>
+        </li>
+        <!-- تراکنش‌های مالی -->
+        <li class="nav-item">
+            <a class="nav-link" id="transactions-tab" data-bs-toggle="tab" href="#transactions" role="tab" aria-controls="transactions" aria-selected="false">تراکنش‌های مالی</a>
+        </li>
+        <!-- تغییر رمز عبور -->
+        <li class="nav-item">
+            <a class="nav-link" id="change-password-tab" data-bs-toggle="tab" href="#change-password" role="tab" aria-controls="change-password" aria-selected="false">تغییر رمز عبور</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="dashboardTabsContent">
+        <!-- Tab Content for Welcome (پیش‌فرض) -->
+        <div class="tab-pane fade show active" id="welcome" role="tabpanel" aria-labelledby="welcome-tab">
+            <div class="card p-4 border-primary mt-3">
+                <h2 class="font-weight-semi-bold text-primary">خوش آمدید</h2>
+                <p class="mb-4">سلام <h5 class="mb-4 secondary">{{ user.first_name }}  {{ user.last_name }} </h5>عزیز، به داشبورد حساب کاربری خود خوش آمدید.</p>
+                <p class="mb-4">در اینجا می‌توانید به بخش‌های مختلف مانند جزئیات کاربری، نوبت‌های من، کارگاه‌ها، تراکنش‌های مالی و تغییر رمز عبور دسترسی داشته باشید.</p>
+                <p class="mb-4">با کلیک بر روی تب‌های بالا، به راحتی می‌توانید به هر بخش از داشبورد خود بروید.</p>
+
+                <a href="/logout" class="btn btn-primary py-2 px-4 position-absolute top-100 start-50 translate-middle " style="padding: 4px 10px; font-size: 0.8rem; line-height: 1.2;">خروج</a>
+
+
+            </div>
+        </div>
+
+        <!-- سایر تب‌ها (جزئیات کاربری، نوبت‌ها و ...) -->
+    <div class="tab-pane fade" id="user-details" role="tabpanel" aria-labelledby="user-details-tab">
+            <div class="card p-4 border-primary mt-3">
+                <h2 class="font-weight-semi-bold text-primary">جزئیات کاربری</h2>
+                <form>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="firstName" class="form-label">نام</label>
+                            <input type="text" class="form-control form-control-sm" id="firstName" placeholder="نام خود را وارد کنید">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="lastName" class="form-label">نام خانوادگی</label>
+                            <input type="text" class="form-control form-control-sm" id="lastName" placeholder="نام خانوادگی خود را وارد کنید">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">ایمیل</label>
+                            <input type="email" class="form-control form-control-sm" id="email" placeholder="ایمیل خود را وارد کنید">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="mobile" class="form-label">شماره موبایل</label>
+                            <input type="tel" class="form-control form-control-sm" id="mobile" placeholder="شماره موبایل خود را وارد کنید">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="birthYear" class="form-label">سال تولد</label>
+                            <input type="number" class="form-control form-control-sm" id="birthYear" placeholder="سال تولد خود را وارد کنید">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="gender" class="form-label">جنسیت</label>
+                            <select class="form-control form-control-sm" id="gender">
+                                <option value="">انتخاب کنید</option>
+                                <option value="male">مرد</option>
+                                <option value="female">زن</option>
+                                <option value="other">سایر</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class=" mb-3">
+                        <label for="address" class="form-label">آدرس</label>
+                        <textarea class="form-control form-control-sm" id="address" rows="2" placeholder="آدرس خود را وارد کنید"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">ذخیره</button>
+                </form>
+            </div>
+        </div>
+    <!-- Tab Content for Appointments -->
+    <div class="tab-pane fade" id="appointments" role="tabpanel" aria-labelledby="appointments-tab">
+                    <div class="card p-4 border-primary mt-3">
+                        <h2 class="font-weight-semi-bold text-primary">نوبت‌های من</h2>
+                        <p class="mb-4">مشاهده و مدیریت نوبت‌های ثبت‌شده شما.</p>
+        
+                        <!-- جدول نوبت‌ها -->
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">تاریخ و ساعت</th>
+                                    <th scope="col">مشاور</th>
+                                    <th scope="col">وضعیت</th>
+                                    <th scope="col">کد پیگیری</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for appointment in appointments %}
+                                <tr>
+                                    <td>{{ appointment.date }} - {{ appointment.time }}</td>
+                                    <td>{{ appointment.consultant_name }}</td>
+                                    <td>{{ appointment.status }}</td>
+                                    <td>{{ appointment.tracking_code }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        
+     <!-- Tab Content for Workshops -->
+    <div class="tab-pane fade" id="workshops" role="tabpanel" aria-labelledby="workshops-tab">
+                    <div class="card p-4 border-primary mt-3">
+                        <h2 class="font-weight-semi-bold text-primary">کارگاه‌ها</h2>
+                        <p class="mb-4">مشاهده و ثبت‌نام در کارگاه‌های آموزشی.</p>
+        
+    <!-- جدول کارگاه‌ها -->
+    <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">نام کارگاه</th>
+                                    <th scope="col">تاریخ شروع</th>
+                                    <th scope="col">وضعیت</th>
+                                    <th scope="col">مبلغ</th>
+                                    <th scope="col">کد پیگیری</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for workshop in workshops %}
+                                <tr>
+                                    <td>{{ workshop.name }}</td>
+                                    <td>{{ workshop.start_date }}</td>
+                                    <td>{{ workshop.status }}</td>
+                                    <td>{{ workshop.amount }}</td>
+                                    <td>{{ workshop.tracking_code }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        
+    <!-- Tab Content for Transactions -->
+    <div class="tab-pane fade" id="transactions" role="tabpanel" aria-labelledby="transactions-tab">
+                    <div class="card p-4 border-primary mt-3">
+                        <h2 class="font-weight-semi-bold text-primary">تراکنش‌های مالی</h2>
+                        <p class="mb-4">مشاهده و پیگیری پرداخت‌ها و صورتحساب‌ها.</p>
+        
+                        <!-- جدول تراکنش‌ها -->
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">وضعیت</th>
+                                    <th scope="col">مبلغ</th>
+                                    <th scope="col">تاریخ</th>
+                                    <th scope="col">کد پیگیری</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for transaction in transactions %}
+                                <tr>
+                                    <td>{{ transaction.status }}</td>
+                                    <td>{{ transaction.amount }}</td>
+                                    <td>{{ transaction.date }}</td>
+                                    <td>{{ transaction.tracking_code }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        
+    <!-- Tab Content for Change Password -->
+    <div class="tab-pane fade" id="change-password" role="tabpanel" aria-labelledby="change-password-tab">
+                    <div class="card p-4 border-primary mt-3">
+                        <h2 class="font-weight-semi-bold text-primary">تغییر رمز عبور</h2>
+                        <form>
+                            <div class="mb-3">
+                                <label for="oldPassword" class="form-label">رمز عبور قبلی</label>
+                                <input type="password" class="form-control form-control-sm" id="oldPassword" placeholder="رمز عبور قبلی خود را وارد کنید">
+                            </div>
+                            <div class="mb-3">
+                                <label for="newPassword" class="form-label">رمز عبور جدید</label>
+                                <input type="password" class="form-control form-control-sm" id="newPassword" placeholder="رمز عبور جدید خود را وارد کنید">
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmNewPassword" class="form-label">تکرار رمز عبور جدید</label>
+                                <input type="password" class="form-control form-control-sm" id="confirmNewPassword" placeholder="رمز عبور جدید خود را تکرار کنید">
+                            </div>
+                            <button type="submit" class="btn btn-primary">تغییر رمز عبور</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}

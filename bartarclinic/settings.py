@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'ckeditor',
 'django_jalali',
 'jalali_date',
+
 ]
 
 MIDDLEWARE = [

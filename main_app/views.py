@@ -118,7 +118,17 @@ def register(request):
 
 @login_required 
 def dashboard(request):
-    return render(request,'main_app/dashboard.html')
+    if (request.user.rolle=="therapeutist"):
+        return render(request,'main_app/dashboard.html')
+    else:
+        return redirect("/panel/")
+
+@login_required 
+def panel(request):
+    if (request.user.rolle=="client"):
+        return render(request,'main_app/userpanel.html')
+    else:
+        return redirect("/dashboard/")
 
 
 def logout(request):
@@ -132,11 +142,19 @@ def login(request):
         u=authenticate(username=username,password=passw)
         if u is not None:
             lg(request,u)
-            return redirect("/dashboard/")
+            if  (u.rolle=="therapeutist"):
+                return redirect("/dashboard/")
+            else:
+                return redirect("/panel/")
+
         else:
                 return render(request,'main_app/login.html' ,context={"massage":"نام کاربری یا رمز عبور اشتباه است"})
     else:
         return render(request,'main_app/login.html')
+    
+    
+def reserve(request):
+    return render(request,'main_app/reserve.html')
  
  
 def get_schedule_by_therapist(request):
