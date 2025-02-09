@@ -5,6 +5,12 @@
          url('font/irsans.ttf') format('ttf'),
          url('font/irsans.woff') format('woff'),
 }
+body{
+    font-family: 'myfont';
+}
+*{
+    font-feature-settings: "lnum" 0, "tnum" 0;
+}
 .size{ width: 400px; height: 300px;}
 .dropdown-menu{ font-family: 'myfont';}
 .me-3{font-family: 'myfont';}
@@ -354,3 +360,31 @@ h6,
     width: 120px;
     height: 120px;
 }
+
+
+
+
+
+-----navbar-----
+.fixed-bottom {
+    background-color: #f8f9fa; /* رنگ پس‌زمینه */
+    border-top: 1px solid #ddd; /* خط جداکننده */
+}
+.fixed-bottom .btn {
+    width: 40px; /* اندازه دکمه‌ها */
+    height: 40px;
+    border-radius: 50%; /* گرد کردن دکمه‌ها */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

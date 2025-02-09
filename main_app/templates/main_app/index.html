@@ -6,15 +6,13 @@
     <meta charset="utf-8">
     <title>bartar - psychology Clinic  </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
+    <meta content="روان‌شناسی، مشاوره، کلینیک" name="keywords">
+    <meta content="کلینیک روان‌شناسی برتر، خدمات مشاوره و درمان حرفه‌ای" name="description">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
 
-   
-    
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -41,82 +39,173 @@
         background: url('{{ph.6.img.url }}') center center no-repeat;
         background-size: cover;
     }
+
 </style>
 
 </head>
 
 <body>
-    <!-- Spinner Start -->
-    <!-- <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-grow text-primary m-1" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-        <div class="spinner-grow text-dark m-1" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-        <div class="spinner-grow text-secondary m-1" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div> -->
-    <!-- Spinner End -->
 
-         <!-- Topbar Start -->
+
+     <!-- Topbar Start -->
     <div class="container-fluid  px-5 d-none d-lg-block" style="font-family: myfont; background-color:#091e3ecf ">
             <div class="row gx-0" style="direction: rtl;">
                 <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center" style="height: 45px; margin-left: 390px;">
-                        <small class="me-3 text-light" style="width: 120px; text-align:right"><i class="fa fa-phone-alt me-2"></i>&nbsp;09194088785</small>
-                        <small class="me-3 text-light" style="width: 190px; text-align:right"><i class="fa fa-envelope-open me-2"></i>&nbsp;bartarravan@gmail.com</small>
-                        <small class="me-3 text-light" style="width: 400px; text-align:right"><i class="fa fa-map-marker-alt me-2"></i>&nbsp; تهران،منیریه،خیابان مظفری، پلاک 45،واحد3 </small>
-
+                        {%for i in cinfo%}
+                        <small class="me-3 text-light" style="width: 120px; text-align:right"><i class="fa fa-phone-alt me-2"></i>&nbsp;{{i.mobileNumber}}</small>
+                        <small class="me-3 text-light" style="width: 190px; text-align:right"><i class="fa fa-envelope-open me-2"></i>&nbsp;{{i.email}}</small>
+                        <small class="me-3 text-light" style="width: 400px; text-align:right"><i class="fa fa-map-marker-alt me-2"></i>&nbsp; {{i.address}}</small>
                     </div>
                 </div>
                 <div class="col-lg-4 text-center text-lg-end" style="padding-right: 300px;">
                     <div class="d-inline-flex align-items-center" style="height: 45px;">
-                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-twitter fw-normal"></i></a>
-                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-facebook-f fw-normal"></i></a>
-                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-linkedin-in fw-normal"></i></a>
-                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="https://www.instagram.com/kargoroh_zehn_va_ravan_bartar13"><i class="fab fa-instagram fw-normal"></i></a>
-                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-youtube fw-normal"></i></a>
+                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="{{i.twitter}}"><i class="fab fa-twitter fw-normal"></i></a>
+                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="{{i.facebook}}"><i class="fab fa-facebook-f fw-normal"></i></a>
+                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="{{i.linkedin}}"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="{{i.instagram}}"><i class="fab fa-instagram fw-normal"></i></a>
+                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="{{i.youtube}}"><i class="fab fa-youtube fw-normal"></i></a>
                     </div>
+                   
                 </div>
             </div>
         </div>
         <!-- Topbar End -->
 
-        
+ 
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0" style="direction: rtl;">
-        <a href="index.html" class="navbar-brand p-0">
-            <h5 class="m-0 text-primary"><img src="{%static 'main_app/'%}img/1.png" alt=" لوگوی کلینیک روانشناسی ذهن و روان برتر" width="65" height="40"></i>کلینیک ذهن و روان برتر</h5>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" style="direction: ltr;">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse" style="margin-right: 40px;" >
-            <div class="navbar-nav ms-auto py-0">
-                <a href="/" class="nav-item nav-link active">خانه</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">خدمات</a>
-                    <div class="dropdown-menu m-0" style="text-align: right;">
-                        <a href="/therapy" class="dropdown-item">مشاوره</a>
-                        <a href="/psychopathy" class="dropdown-item">درمان اختلالات</a>
-                        <a href="/test" class="dropdown-item">تست روانشناسی</a>
-                        <a href="/workshop" class="dropdown-item">برگزاری کارگاه</a>
-                    </div>
-                </div>
-                <a href="/team" class="nav-item nav-link">درمانگران</a>
-                <a href="/article" class="nav-item nav-link">مقالات</a>
-                <a href="/about" class="nav-item nav-link">درباره ما</a>
-                <a href="/contact" class="nav-item nav-link">تماس باما</a>
-            </div>
-            
-            <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button>
-            <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#userModal"><i class="fa fa-user"></i>  </button>
-            <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#bagModal"><i class="fa fa-shopping-bag"></i></button>
 
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0" style="direction: rtl;">
+    <a href="index.html" class="navbar-brand p-0">
+        <h5 class="m-0 text-primary">
+            <img src="{{i.logo.url}}" alt="لوگوی کلینیک روانشناسی ذهن و روان برتر" width="65" height="40">
+            کلینیک ذهن و روان برتر
+        </h5>
+        {%endfor%}
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse" style="margin-right: 40px;">
+        <div class="navbar-nav ms-auto py-0">
+            <a href="/" class="nav-item nav-link active">خانه</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">خدمات</a>
+                <div class="dropdown-menu m-0" style="text-align: right;">
+                    <a href="/therapy" class="dropdown-item">مشاوره</a>
+                    <a href="/psychopathy" class="dropdown-item">درمان اختلالات</a>
+                    <a href="/test" class="dropdown-item">تست روانشناسی</a>
+                    <a href="/workshop" class="dropdown-item">برگزاری کارگاه</a>
+                </div>
+            </div>
+            <a href="/team" class="nav-item nav-link">درمانگران</a>
+            <a href="/article" class="nav-item nav-link">مقالات</a>
+            <a href="/about" class="nav-item nav-link">درباره ما</a>
+            <a href="/contact" class="nav-item nav-link">تماس باما</a>
         </div>
-    </nav>
+    </div>
+
+    <!-- button in nav (desktopshow)-->
+    <div class="d-none d-lg-flex align-items-center">
+{%if user.is_authenticated%}
+         <div class="dropdown">
+            <button class="btn  dropdown-toggle  text-dark me-2" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-user"></i>
+            </button>
+           <ul class="dropdown-menu" aria-labelledby="userDropdown" style="text-align:right">
+            <li><h6 class="dropdown-item text-primary" > {{user.first_name}}  {{user.last_name}}</h6></li>
+           <li><a class="dropdown-item" href="/panel">حساب کاربری</a></li>
+            <li><a class="dropdown-item" href="/logout" >خروج</a></li>
+           </ul>
+        </div>
+{%else%}
+        <button type="button" class="btn text-dark me-2" data-bs-toggle="modal" data-bs-target="#userModal">
+            <i class="fa fa-user"></i>
+        </button>
+{%endif%}
+{%if user.is_authenticated%}
+        <div class="dropdown1" style="width: auto; position: relative; " >
+            <button class="btn  dropdown-toggle  text-dark me-2" type="button" id="bagDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-calendar"></i>
+            </button>
+           <ul class="dropdown-menu p-3 shadow-lg " aria-labelledby="bagDropdown" style="text-align:right" >
+            {% if reservation %}
+            <li class="dropdown-header text-primary">نوبت‌ها<i class="fa fa-clock me-2 "></i></li>
+                {% for reservation in reservation %}
+                <li>
+                    <h6 class="dropdown-item text-dark">
+                        {{ reservation.appointment.therapeutist.name }}<br>
+                        {{ reservation.appointment.schedule.start_time }} - {{ reservation.appointment.schedule.end_time }}|
+                        {{ reservation.appointment.schedule.date }}
+                    </h6>
+                {%endfor%}
+                    <a href="checkoutR/" class="btn btn-sm btn-outline-primary">
+                        پرداخت
+                    </a>
+                </li>
+        <hr class="dropdown-divider">
+            {%endif%}
+
+            {%if order%}
+            <li class="dropdown-header text-primary">کارگاه‌ها<i class="fa fa-calendar-alt me-2"></i></li>
+                {% for i in order.items.all %}
+                <li>
+                    <h6 class="dropdown-item text-dark">
+                        {{ i.service.title }}<br>
+                        تاریخ شروع:
+                        {{ i.service.srv.first.startw }}
+                    </h6>
+                {%endfor%}
+                    <a href="checkout/" class="btn btn-sm btn-outline-primary">
+                        پرداخت
+                    </a>
+                </li>
+                    <hr class="dropdown-divider">    
+            {% endif %}
+           </ul>
+        </div>
+{%else%}
+        <button type="button" class="btn text-dark me-2" data-bs-toggle="modal" data-bs-target="#bagModal">
+            <i class="fa fa-calendar"></i>
+        </button>
+{%endif%}
+        <button type="button" class="btn text-dark me-2" data-bs-toggle="modal" data-bs-target="#searchModal">
+            <i class="fa fa-search"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Fixed Bottom Bar ( mobileshow ) -->
+<div class="d-lg-none fixed-bottom  bg-white shadow-lg py-2">
+{%if user.is_authenticated%}
+    <div class="container d-flex justify-content-around">
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#searchModal">
+            <i class="fa fa-search"></i>
+        </button>
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#bagModal">
+            <a class="fa fa-calendar" href="cart/"></a>
+        </button>
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#userModal">
+            <a class="fa fa-user" href="panel/"></a>
+        </button>
+        <button type="submit" class="btn btn-outline-dark ms-2" >
+            <a class="fas fa-sign-out-alt" href="/logout"></a>
+        </button>
+{%else%}
+<div class="container d-flex justify-content-around">
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#searchModal">
+            <i class="fa fa-search"></i>
+        </button>
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#bagModal">
+            <i class="fa fa-calendar"></i>
+        </button>
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#userModal">
+            <i class="fa fa-user"></i>
+        </button>
+    {%endif%}
+    </div>
+</div>
+
     <!-- Navbar End -->
 
 
@@ -138,7 +227,8 @@
     </div>
     <!-- Full Screen Search End -->
 
-        <!-- Full Screen user Start -->
+
+    <!-- Full Screen signin Start -->
         <div class="modal fade" id="userModal" tabindex="-1">
             <div class="modal-dialog modal-fullscreen" >
                 <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
@@ -152,13 +242,14 @@
                         </div>
                     <div>
                         <div id="signin">
-                            <form action="#">
+                            <form  id="loginForm"  method="post">
+                                {%csrf_token%}
                                 <div class="modal-body d-flex align-items-center justify-content-center">
                                     <div class="input" style="max-width: 300px; direction:rtl">                        
-                                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder=" نام کاربری یا آدرس ایمیل">
+                                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder=" نام کاربری یا آدرس ایمیل" id="username"name="username" style="color: white;">
                                         <br/>
-                                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="رمز عبور">
-                                        <a href="" class="btn btn-primary py-2 px-4 ms-3" style="margin-top: 20px;">ورود</a>
+                                        <input type="password" class="form-control bg-transparent border-primary p-3" placeholder="رمز عبور" id="passw" name="passw"style="color: white;">
+                                        <button type="button" class="btn btn-primary py-2 px-4 ms-3" style="margin-top: 20px;" onclick="callLogin()">ورود</button>
                                         <br>
                                         <a href="" ><h6 class="text-white mb-4">رمز عبور خود را فراموش کرده اید؟</h6></a>
                                        
@@ -167,15 +258,14 @@
                                 </div>
                             </form>
                         </div>
-                       
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Full Screen user End -->
+        <!-- Full Screen sigin End -->
 
 
-    <!-- Carousel Start -->
+    <!-- discribtion1 start -->
     <div class="container-fluid p-0">
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -184,7 +274,6 @@
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h3 class="text-white text-uppercase mb-3 animated slideInDown">{{cnt.0.txt|safe}}</h3>
-                            
                         </div>
                     </div>
                 </div>
@@ -192,12 +281,10 @@
                     <img class="w-100" src="{{ph.1.img.url}}" alt="مشاوره خانواده">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
-                            <h3 class="text-white text-uppercase mb-3 animated slideInDown">{{cnt.1.txt|safe}}</h3>
-                            
+                            <h3 class="text-white text-uppercase mb-3 animated slideInDown">{{cnt.1.txt|safe}}</h3> 
                         </div>
                     </div>
                 </div>
-
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
                 data-bs-slide="prev">
@@ -211,8 +298,7 @@
             </button>
         </div>
     </div>
-    <!-- Carousel End -->
-
+    <!-- discribtion1  End -->
 
 
     <!-- About Start -->
@@ -254,7 +340,7 @@
     </div>
     <!-- Offer End -->
 
-    <!-- Service Start -->
+    <!-- discribtion2 start  -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s"style="direction: rtl;">
         <div class="container">
             <div class="row g-5 mb-5">
@@ -283,11 +369,9 @@
             </div>
         </div>
     </div>
-    <!-- Service End -->
+    <!-- discribtion2 End -->
 
-
-
-    <!-- Testimonial Start -->
+    <!-- suggestion Start -->
     <div class="container-fluid bg-primary bg-testimonial py-5 my-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row justify-content-center">
@@ -301,36 +385,22 @@
                             <h4 class="text-white mb-0">{{i.username}} </h4>
                         </div>
                         {%endfor%}
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Testimonial End -->
+    <!-- suggestion End -->
 
 
-
-    <!-- Newsletter Start -->
-    <div class="container-fluid position-relative pt-5 wow fadeInUp" data-wow-delay="0.1s" style="z-index: 1; direction:rtl">
-        <div class="container">
-            <div class="bg-primary p-5">
-                <form class="mx-auto" style="max-width: 600px;">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-white p-3"  style="margin-left: 10px;" placeholder="نام کاربری ">
-                        
-                        <input type="text" class="form-control border-white p-3" style="margin-left: 10px;" placeholder="رمز عبور">
-                        <button class="btn btn-dark px-4">ورود</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+    <!-- block Start -->
+    <div class="container-fluid position-relative pt-5 wow fadeInUp" data-wow-delay="0.1s" style="z-index: 1; direction:rtl ">
     </div>
-    <!-- Newsletter End -->
+    <!-- block End -->
     
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light py-5 wow fadeInUp" data-wow-delay="0.3s" style="margin-top: -75px; direction:rtl">
+    <div class="container-fluid bg-dark text-light py-5 wow fadeInUp" data-wow-delay="0.3s" style="margin-top: 50px; direction:rtl">
         <div class="container pt-5">
             <div class="row g-5 pt-4">
                 <div class="col-lg-3 col-md-6">
@@ -343,46 +413,45 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h3 class="text-white mb-4">لینک های مفید</h3>
-                    <div class="d-flex flex-column justify-content-start">
-                 
-                        <a class="text-light mb-2" href="/gallery"><i class="bi bi-arrow-left text-primary me-2"></i>گالری تصاویر</a>
-                        <a class="text-light mb-2" href="/rules"><i class="bi bi-arrow-left text-primary me-2"></i>قوانین و مقررات</a>
-
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
                     <h3 class="text-white mb-4">با ما درتماس باشید</h3>
-                    <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>ایران،تهران،منیریه،خیابان مظفری، پلاک 45،واحد3 </p>
-                    <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>bartarravan@gmail.com</p>
-                    <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i>021-77963522</p>
+                    {%for i in cinfo%}
+                    <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>{{i.address}}</p>
+                    <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>{{i.email}}</p>
+                    <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i>{{i.mobileNumber}}</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h3 class="text-white mb-4">ما را دنبال کنید</h3>
                     <div class="d-flex">
-                        <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="#"><i class="fab fa-twitter fw-normal"></i></a>
-                        <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                        <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                        <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="https://www.instagram.com/kargoroh_zehn_va_ravan_bartar13"><i class="fab fa-instagram fw-normal"></i></a>
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="{{i.twitter}}"><i class="fab fa-twitter fw-normal"></i></a>
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="{{i.facebook}}"><i class="fab fa-facebook-f fw-normal"></i></a>
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="{{i.linkedin}}"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="{{i.instagram}}"><i class="fab fa-instagram fw-normal"></i></a>
+                    </div>
+                    {%endfor%}
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h3 class="text-white mb-4">نمادهای اعتماد</h3>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a referrerpolicy='origin' target='_blank' href=''></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="container-fluid text-light py-4" style="background: #051225;">
-        <!--
+      
+         <!-- copyright Start -->
         <div class="container">
             <div class="row g-0">
-                <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-md-0">&copy; <a class="text-white border-bottom" href="#">Your Site Name</a>. All Rights Reserved.</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0">Designed by <a class="text-white border-bottom" href="https://htmlcodex.com">HTML Codex</a></p>
+                <div class="text-center text-md-start">
+                    <p class="mb-md-0" style="text-align: center;"> .تمامی حقوق این وب سایت برای کلینیک ذهن وروان برتر محفوظ است  &copy; </p>
                 </div>
             </div>
         </div>
+        <!-- copyright End -->
+
     </div>
--->
+    
     <!-- Footer End -->
 
 
@@ -403,8 +472,32 @@
     <script src="{%static 'main_app/'%}lib/twentytwenty/jquery.event.move.js"></script>
     <script src="{%static 'main_app/'%}lib/twentytwenty/jquery.twentytwenty.js"></script>
 
+
     <!-- Template Javascript -->
     <script src="{%static 'main_app/'%}js/main.js"></script>
+
+
+    <!-- loginForm Javascript -->
+    <script>
+        function callLogin(){
+            var fd=new FormData(document.getElementById('loginForm'));
+            fetch('/popup_login/',{
+                method:'POST',
+                body:fd,
+                headers:{'X-CSRFToken':'{{csrf_token}}'},
+            })
+            .then(response=>response.json())
+            .then(data=>{
+                if(data.status==='success'){
+                    location.reload();
+                }
+                else{
+                    alert(data.message);
+                }
+            });
+                }
+    </script>
+
 </body>
 
 </html>

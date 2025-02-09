@@ -89,30 +89,43 @@
         </div>
     </div>
 </div>
+<!-- js appointment form -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
+        const scheduleSelect = $("#id_schedule");
+        scheduleSelect.empty().append('<option value="">ابتدا تراپیست را انتخاب کنید</option>').prop('disabled', true);
         $("#id_therapeutist").change(function () {
             const therapistId = $(this).val();
+            scheduleSelect.empty().prop('disabled', true);
             if (therapistId) {
                 $.ajax({
-                    url: "/get-schedule/", // مسیر نمای Ajax
+                    url: "/get-schedule/", 
                     data: { therapist_id: therapistId },
                     success: function (data) {
-                        const scheduleSelect = $("#id_schedule");
-                        scheduleSelect.empty();
-                        data.schedules.forEach(schedule => {
-                            const option = `<option value="${schedule.id}">
-                                ${schedule.date} (${schedule.start_time} تا ${schedule.end_time})
-                            </option>`;
-                            scheduleSelect.append(option);
-                        });
+                        if (data.schedules && data.schedules.length > 0) {
+                            data.schedules.forEach(schedule => {
+                                const option = `<option value="${schedule.id}">
+                                    ${schedule.date} (${schedule.start_time} تا ${schedule.end_time})
+                                </option>`;
+                                scheduleSelect.append(option);
+                            });
+                            scheduleSelect.prop('disabled', false);
+                        } else {
+                            scheduleSelect.append('<option value="">هیچ زمانی موجود نیست</option>');
+                        }
                     },
+                    error: function () {
+                        scheduleSelect.append('<option value="">خطایی در دریافت زمان‌ها رخ داده است</option>');
+                    }
                 });
+            } else {
+                scheduleSelect.append('<option value="">ابتدا تراپیست را انتخاب کنید</option>');
             }
         });
     });
 </script>
+
 
  <!-- Appointment End -->
 

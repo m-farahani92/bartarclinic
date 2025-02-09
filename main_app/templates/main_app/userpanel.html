@@ -13,6 +13,7 @@
 حساب کاربری
 
 {% endblock %}
+<!-- content start -->
 
 {% block "content" %}
 <div class="container mb-5">
@@ -66,17 +67,17 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="firstName" class="form-label">نام</label>
-                            <input type="text" class="form-control form-control-sm" id="firstName" placeholder="نام خود را وارد کنید">
+                            <input type="text" class="form-control form-control-sm" id="firstName" value="{{ user.first_name }}" readonly>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="lastName" class="form-label">نام خانوادگی</label>
-                            <input type="text" class="form-control form-control-sm" id="lastName" placeholder="نام خانوادگی خود را وارد کنید">
+                            <input type="text" class="form-control form-control-sm" id="firstName" value="{{ user.last_name }}" readonly>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="email" class="form-label">ایمیل</label>
-                            <input type="email" class="form-control form-control-sm" id="email" placeholder="ایمیل خود را وارد کنید">
+                            <input type="text" class="form-control form-control-sm" id="firstName" value="{{ user.email }}" readonly>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="mobile" class="form-label">شماره موبایل</label>
@@ -123,12 +124,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for appointment in appointments %}
-                                <tr>
-                                    <td>{{ appointment.date }} - {{ appointment.time }}</td>
-                                    <td>{{ appointment.consultant_name }}</td>
-                                    <td>{{ appointment.status }}</td>
-                                    <td>{{ appointment.tracking_code }}</td>
+                               {% for reservation in reservations %}
+                                 <tr>
+                                    <td>{{ reservation.appointment.schedule.date }} - {{ reservation.appointment.schedule.start_time }} - {{ reservation.appointment.schedule.end_time }}</td>
+                                    <td>{{ reservation.appointment.therapeutist.name }}</td>
+                                    <td>{{ reservation.status}}</td>
+                                    <td></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -154,13 +155,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for workshop in workshops %}
+                                {% for i in orders.items.all %}
                                 <tr>
-                                    <td>{{ workshop.name }}</td>
-                                    <td>{{ workshop.start_date }}</td>
-                                    <td>{{ workshop.status }}</td>
-                                    <td>{{ workshop.amount }}</td>
-                                    <td>{{ workshop.tracking_code }}</td>
+                                    <td>{{ i.service.title }}</td>
+                                    <td>{{ i.service.srv.first.startw }}</td>
+                                    <td>{{i.order.status}}</td>
+                                    <td>{{ i.service.srv.first.price }}</td>
+                                    <td></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -223,3 +224,4 @@
         </div>
 </div>
 {% endblock %}
+<!-- content End -->

@@ -1,0 +1,81 @@
+{% extends "main_app/layout.html" %}
+{% load static %}
+
+{% block "titlepage" %}
+رزرو نوبت
+{% endblock %}
+
+{% block "homepage" %}
+خانه
+{% endblock %}
+
+{% block "titlepage2" %}
+رزرو نوبت
+{% endblock %}
+<!-- content Start -->
+{% block "content" %}
+<div class="container mb-5">
+    <!-- لینک‌ها -->
+    <div class="mb-4">
+        <a href="/cart" class="text-primary  me-2">ثبت نام کارگاه</a> 
+        <a href="/checkout" class="text-primary bi bi-arrow-left me-2"> &nbsp; صورتحساب و تایید نهایی</a>
+        <a href="#" class="text-primary bi bi-arrow-left me-2">&nbsp;تکمیل خرید</a>
+    </div>
+
+
+    
+    <!-- محتوای صورتحساب -->
+    <div class="card p-4 border-primary mt-3 shadow-sm">
+        <h2 class="font-weight-semi-bold text-primary">صورتحساب و تایید نهایی</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">نام کاربر</th>
+                        <th scope="col">وضعیت</th>
+                        <th scope="col">نام مشاور</th>
+                        <th scope="col">تاریخ مشاوره</th>
+                        <th scope="col">ساعت مشاوره</th>
+                     
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reservation in reservations %}
+
+                    <tr>
+                        <td>{{ reservation.user.username }}</td>
+                        <td>{{ reservation.status}}</td>
+                        <td>{{ reservation.appointment.therapeutist.name }}
+                        <td>{{ reservation.appointment.schedule.date }}</td>
+                        <td>{{ reservation.appointment.schedule.start_time }} - {{ reservation.appointment.schedule.end_time }}</td>
+                        {%endfor%}
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive mt-4">
+            <table class="table table-striped">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">هزینه مشاوره </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        
+                        <td>{{ sm }} تومان</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center mt-3">
+          
+            <a href="/confirmPayment" class="btn btn-primary">پرداخت</a>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!-- content end -->

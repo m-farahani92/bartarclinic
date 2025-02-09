@@ -15,18 +15,6 @@ class contactForm (forms.ModelForm):
               
 
 
-
-class ScheduleForm(forms.ModelForm):
-    date = JalaliDateField(widget=AdminJalaliDateWidget)
-    start_time = forms.TimeField( widget=forms.TextInput(attrs={'class': 'flatpickr-input'}),label="زمان شروع")
-    end_time = forms.TimeField(widget=forms.TextInput(attrs={'class': 'flatpickr-input'}), label="زمان پایان")
-
-    class Meta:
-        model = scheduleClass
-        fields = ['therapeutist', 'date', 'start_time', 'end_time']
-        
-        
-
 class appointmentForm(forms.ModelForm):
     class Meta:
         model = appointmentClass
@@ -77,3 +65,22 @@ class appointmentForm2(forms.ModelForm):
         self.fields['service'].empty_label ="نوع اختلال"
         self.fields['therapeutist'].empty_label =" درمانگر"
         self.fields['schedule'].empty_label ="زمان مشاوره "
+        
+        
+        
+        
+# class ScheduleForm(forms.ModelForm):
+#     date = JalaliDateField(widget=AdminJalaliDateWidget)
+#     start_time = forms.TimeField( widget=forms.TextInput(attrs={'class': 'flatpickr-input'}),label="زمان شروع")
+#     end_time = forms.TimeField(widget=forms.TextInput(attrs={'class': 'flatpickr-input'}), label="زمان پایان")
+
+#     class Meta:
+#         model = scheduleClass
+#         fields = ['therapeutist', 'date', 'start_time', 'end_time']
+        
+
+# class worksgshopForm(forms.ModelForm):
+#     startw = JalaliDateField(widget=AdminJalaliDateWidget)
+#     class Meta:
+#         model =workshopClass
+#         fields = ['startw']

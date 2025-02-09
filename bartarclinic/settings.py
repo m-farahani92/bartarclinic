@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'ckeditor',
 'django_jalali',
 'jalali_date',
-
+'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +134,11 @@ import os
 MEDIA_ROOT=os.path.join(BASE_DIR,"media")
 
 AUTH_USER_MODEL="main_app.customuserClass"
+
+
+
+
+# setting_ Celery
+CELERY_BROKER_URL = 'redis://localhost:6379/0' 
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'

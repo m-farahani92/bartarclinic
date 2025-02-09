@@ -1,0 +1,41 @@
+{% extends "main_app/layout.html" %}
+{% load static %}
+
+{% block "titlepage" %}پرداخت{% endblock %}
+{% block "homepage" %}خانه{% endblock %}
+{% block "titlepage2" %}پرداخت{% endblock %}
+
+<!-- content Start -->
+{% block "content" %}
+<div class="row justify-content-center">
+    <!-- بخش اطلاعات پرداخت -->
+    <div class="col-md-5 text-center p-4 bg-light rounded shadow">
+        <h3 class="font-weight-bold">لطفا مبلغ <span class="text-primary">&nbsp;&nbsp;&nbsp;&nbsp;</span> تومان را به شماره کارت زیر واریز کنید</h3>
+        <div class="bg-white p-3 rounded border text-danger font-weight-bold">
+            ۶۰۳۷-0000-0000-0000<p> بانک ملت</p>
+        </div>
+        <div class="bg-white p-3 rounded border text-danger font-weight-bold">
+            به نام :شیما رمزی
+        </div>
+        <p class="mt-3">سپس فیش واریزی را آپلود کرده و کد رهگیری را وارد نمایید و گزینه ارسال را بزنید</p>
+    </div>
+
+    <!-- بخش فرم پرداخت -->
+    <div class="col-md-5 p-4 bg-white rounded shadow">
+        <h2 class="text-center font-weight-semi-bold">ارسال اطلاعات پرداخت</h2>
+        <form method="POST" enctype="multipart/form-data" style="text-align: right;">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">کد رهگیری پرداخت</label>
+                <input type="text" name="tracking_code" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">آپلود رسید پرداخت</label>
+                <input type="file" name="payment_receipt" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">ارسال</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+<!-- content end -->

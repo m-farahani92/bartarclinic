@@ -1,0 +1,77 @@
+{% extends "main_app/layout.html" %}
+{% load static %}
+
+{% block "titlepage" %}
+ثبت نام کارگاه
+{% endblock %}
+
+{% block "homepage" %}
+خانه
+{% endblock %}
+
+{% block "titlepage2" %}
+ثبت نام کارگاه
+{% endblock %}
+<!-- content Start -->
+{% block "content" %}
+<div class="container mb-5">
+    <!-- لینک‌ها -->
+    <div class="mb-4">
+        <a href="/cart" class="text-primary  me-2">جزئیات ثبت نام</a> 
+        <a href="#ُ" class="text-primary bi bi-arrow-left me-2"> &nbsp;صورتحساب و تایید نهایی</a>
+        <a href="#" class="text-primary bi bi-arrow-left me-2">&nbsp;تکمیل خرید</a>
+    </div>
+
+    <!-- محتوای ثبت نام کارگاه -->
+    <div class="card p-4 border-primary mt-3 shadow-sm">
+        <h2 class="font-weight-semi-bold text-primary">جزئیات کارگاه</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">نام کارگاه</th>
+                        <th scope="col">تاریخ شروع</th>
+                        <th scope="col">دسته بندی</th>
+                        <th scope="col">تعداد</th>
+                        <th scope="col">هزینه</th>
+                        <th scope="col">حذف</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in o.items.all %}
+                    <tr>
+                        <td>{{ i.service.title }}</td>
+                        <td>{{ i.service.srv.first.startw }}</td>
+                        <td>{{ i.service.srv.first.categoryw }}</td>
+                        <td>{{ i.quantity }}</td>
+                        <td>{{ i.service.srv.first.price }}</td>
+                        <td><a href="/deletecart/{{ i.id }}" class="btn btn-danger btn-sm">حذف</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-responsive mt-4">
+            <table class="table table-striped">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">تعداد کل کارگاه ها</th>
+                        <th scope="col">مبلغ کل ثبت نام </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td>{{ sm }} تومان</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center mt-3">
+            <a href="/checkout" class="btn btn-primary">ثبت</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!-- content end -->

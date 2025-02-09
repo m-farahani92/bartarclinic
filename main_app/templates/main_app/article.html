@@ -18,7 +18,6 @@
 <!-- content Start -->
 {%block "content"%}
 
-    <!-- Testimonial Start -->
     <div class="container-fluid bg-primary bg-article py-5 my-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row justify-content-center">
@@ -26,30 +25,21 @@
                     <div class="owl-carousel testimonial-carousel rounded p-5 wow zoomIn" data-wow-delay="0.6s" style="font-family: 'myfont';">
                         <div class="testimonial-item text-center text-white">
                             <img class="img-fluid mx-auto rounded mb-4" src="{%static 'main_app/'%}img/article2.png" alt="مقاله">
-                            <h5 class="mb-2" >  کاربرد سه روش درمانی در کاهش رفتار پرخاشگرانه کودکان پرخاشگر</h5>
+                            {%for i in article%}
+                            <h5 class="mb-2" >  {{i.title}}</h5>
                             <hr class="mx-auto w-25">
                          
-                            <h6 class="mb-2">  نویسندگان: ناظر محمد،دکتر بیرشک بهروز، دکتر جلیلی بهروز  </h6>
+                            <h6 class="mb-2">  {{i.authors}} </h6>
                             <button class="btn btn-dark px-4">بیشتر بدانید</button>
                             <button class="btn btn-dark px-4">دانلود</button>
                         </div>
-                        <div class="testimonial-item text-center text-white">
-                            <img class="img-fluid mx-auto rounded mb-4" src="{%static 'main_app/'%}img/article2.png" alt="مقاله">
-                            <h5 class="mb-2">  
-                                اثربخشی برنامه فرزندپروری مثبت بر کم توجهی و بیش فعالی-تکانشگری کودکان مبتلا به اختلال کم توجهی و بیش فعالی</h5>
-                            <hr class="mx-auto w-25">
-                         
-                            <h6 class="mb-2">  نویسندگان: زهرا شیخی ولاشانی زهرا، فاطمه جوادزاده شهشهانی   </h6>
-                            <button class="btn btn-dark px-4">بیشتر بدانید</button>
-                            <button class="btn btn-dark px-4">دانلود</button>
+                        {%endfor%}
 
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Testimonial End -->
 
 {%endblock%}
 <!-- content End -->
