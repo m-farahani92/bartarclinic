@@ -45,7 +45,7 @@
                     {% for reservation in reservations %}
                     <tr>
                     <td>{{ reservation.user.username }}</td>
-                    <td>{{ reservation.status}}</td>
+                    <td>{{ reservation.get_status_display}}</td>
                     <td>{{ reservation.appointment.therapeutist.name }}
                     <td>{{ reservation.appointment.schedule.date }}</td>
                     <td>{{ reservation.appointment.schedule.start_time }} - {{ reservation.appointment.schedule.end_time }}</td>

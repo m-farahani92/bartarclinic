@@ -15,7 +15,7 @@ from django.contrib import messages
 def home(request):
     stc=staticcontentClass.objects.filter(key='home')
     stp=staticphotoClass.objects.filter(key='home')
-    ct=contactClass.objects.all()
+    ct=contactClass.objects.all()[:3]
     cinfo=ClinicInfoClass.objects.all()
     if request.user.is_authenticated:
         reservation = reservationClass.objects.filter(user=request.user, status='cart')
@@ -39,30 +39,44 @@ def layout(request):
 def confirm_payment(request):
     cinfo=ClinicInfoClass.objects.all()
     reservations = reservationClass.objects.filter(user=request.user, status='cart')
-
+   
     if not reservations.exists():     
-        messages.error(request, "سبد خرید شما خالی است.")
-        return redirect("/checkout/") 
+        return redirect("/checkoutR/") 
 
+    order=orderClass.objects.filter(user=request.user, status='cart').first()
+    sm=0
+    if reservations:
+        for res in reservations:
+            sm += res.appointment.schedule.price
+               
     if request.method == "POST":
         tracking_code = request.POST.get('tracking_code')
         payment_receipt = request.FILES.get('payment_receipt')
-
-        if not tracking_code and not payment_receipt:
-            messages.error(request, "باید حداقل یکی از اطلاعات پرداخت را وارد کنید.")
-            return redirect("/confirmPayment/")
-
-        for reservation in reservations:
-            reservation.payment_tracking_code = tracking_code
-            if payment_receipt:
+        if tracking_code and payment_receipt:
+            for reservation in reservations:
+                reservation.payment_tracking_code = tracking_code
                 reservation.payment_receipt = payment_receipt
-            reservation.status = 'pending'
-            reservation.save()
+                reservation.status = 'pending'
+                reservation.save()
+            return redirect("/invoice/") 
 
-        messages.success(request, "پرداخت شما ثبت شد و در انتظار تأیید مدیریت است.")
-        return redirect("/checkoutR/") 
+    return render(request, "main_app/confirmPayment.html", context={"reservation": reservations,"cinfo":cinfo,"order":order,"sm":sm})
 
-    return render(request, "main_app/confirmPayment.html", context={"reservations": reservations,"cinfo":cinfo})
+
+@login_required
+def invoice(request):
+    cinfo = ClinicInfoClass.objects.all()
+    order = orderClass.objects.get(user=request.user)
+    reservations = reservationClass.objects.filter(user=request.user, status='pending')
+
+    total_price = sum(res.appointment.schedule.price for res in reservations)
+
+    return render(request, "main_app/invoice.html", {
+        "order": order,
+        "reservations": reservations,
+        "cinfo": cinfo,
+        "total_price": total_price
+    })
 
 
 
@@ -110,7 +124,8 @@ def reservation(request):
             reservation.appointment.schedule.save()    
             reservation.save()   
             reservation = None  
-
+    
+    reservations = reservationClass.objects.filter(user=request.user, status='cart')
     sm = 0 
     if reservations:
         for res in reservations:
@@ -127,6 +142,7 @@ def reservation(request):
 def checkoutR(request):
     cinfo=ClinicInfoClass.objects.all()
     reservations = reservationClass.objects.filter(user=request.user, status='cart')
+    order=orderClass.objects.filter(user=request.user, status='cart').first()
     sm=0
     if reservations:
         for res in reservations:
@@ -134,7 +150,7 @@ def checkoutR(request):
     if (request.method=="POST"):
         reservation_id = request.POST.get('reservation_id')
 
-    return render(request, "main_app/checkoutR.html", context={"reservations": reservations, "sm":sm,"cinfo":cinfo})
+    return render(request, "main_app/checkoutR.html", context={"reservation": reservations, "sm":sm,"cinfo":cinfo,"order":order})
 
 
 
@@ -202,7 +218,13 @@ def test(request):
     stc=staticcontentClass.objects.filter(key='test')
     stp=staticphotoClass.objects.filter(key='test')
     cinfo=ClinicInfoClass.objects.all()
-    return render(request,'main_app/test.html',context={"cnt":stc,"ph":stp,"cinfo":cinfo})
+    if request.user.is_authenticated:
+        reservation = reservationClass.objects.filter(user=request.user, status='cart')
+        order=orderClass.objects.filter(user=request.user, status='cart').first()
+    else:
+        reservation = None
+        order=None
+    return render(request,'main_app/test.html',context={"cnt":stc,"ph":stp,"cinfo":cinfo,"reservation":reservation,"order":order})
 
 
 
@@ -212,7 +234,13 @@ def workshop(request):
     ws=workshopClass.objects.all()
     cws=categorywsClass.objects.all()
     cinfo=ClinicInfoClass.objects.all()
-    return render(request,'main_app/workshop.html',context={"cnt":stc,"ph":stp , "w":ws , "cw":cws,"cinfo":cinfo})
+    if request.user.is_authenticated:
+        reservation = reservationClass.objects.filter(user=request.user, status='cart')
+        order=orderClass.objects.filter(user=request.user, status='cart').first()
+    else:
+        reservation = None
+        order=None
+    return render(request,'main_app/workshop.html',context={"cnt":stc,"ph":stp , "w":ws , "cw":cws,"cinfo":cinfo,"reservation":reservation,"order":order})
 
 
 
@@ -248,21 +276,24 @@ def deletecart(request,itmid):
 @login_required
 def cart(request):
     orders=orderClass.objects.filter(user=request.user,status='cart').first()
-    
+    reservations = reservationClass.objects.filter(user=request.user, status='cart')
     sm=0
+    quan=0
     for i in orders.items.all():
         first_srv=i.service.srv.first()
         if first_srv:
             sm += first_srv.price * i.quantity
-            
+            quan+=i.quantity
     cinfo=ClinicInfoClass.objects.all()
-    return render(request,'main_app/cart.html', context={'o':orders,'sm':sm,"cinfo":cinfo})
+    return render(request,'main_app/cart.html', context={'order':orders,'sm':sm,"cinfo":cinfo,"reservation":reservations,"qaun":quan})
 
 
 
 @login_required
 def checkout(request):
     orders=orderClass.objects.filter(user=request.user,status='cart').first()
+    reservations = reservationClass.objects.filter(user=request.user, status='cart')
+
     sm=0
     for i in orders.items.all():
         first_srv=i.service.srv.first()
@@ -270,7 +301,7 @@ def checkout(request):
             sm += first_srv.price * i.quantity
 
     cinfo=ClinicInfoClass.objects.all()
-    return render(request,'main_app/checkout.html', context={'o':orders,'sm':sm,"cinfo":cinfo})
+    return render(request,'main_app/checkout.html', context={'order':orders,'sm':sm,"cinfo":cinfo,"reservation":reservations})
 
 
 
@@ -361,16 +392,21 @@ def panel(request):
 def logout(request):
     cinfo=ClinicInfoClass.objects.all()
     lo(request)
-    return render(request,'main_app/login.html' ,context={"cinfo":cinfo})
+    return redirect('/login')
 
 
 
 def login(request):
+    if request.user.is_authenticated:
+        if request.user.rolle == "therapeutist":
+            return redirect("/dashboard/")
+        else:
+            return redirect("/panel/")
     cinfo=ClinicInfoClass.objects.all()
     if (request.method=="POST"):
         username=request.POST.get("username")
-        passw=request.POST.get("passw")
-        u=authenticate(username=username,password=passw)
+        password=request.POST.get("passw")
+        u=authenticate(username=username,password=password)
         if u is not None:
             lg(request,u)
             if  (u.rolle=="therapeutist"):

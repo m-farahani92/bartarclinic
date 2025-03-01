@@ -21,6 +21,11 @@ class staticcontentClass (models.Model):
     title=models.CharField(max_length=100,null=True,verbose_name="عنوان")
     def __str__(self):
         return self.title
+    class Meta:
+        verbose_name = "متن ثابت"
+        verbose_name_plural = "متون ثابت"
+    def __str__(self):
+        return self.name
 
 
 class staticphotoClass (models.Model):
@@ -132,7 +137,7 @@ class appointmentClass(models.Model):
 class reservationClass(models.Model):
     user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
 
-    status_choices=[('cart',"سبد خرید"),('pending', " در انتظار تأیید ادمین"),('final',"سفارش نهایی"),('expired', "منقضی شده")
+    status_choices=[('cart',"پرداخت نشده "),('pending', " در انتظار تأیید "),('final',"سفارش نهایی"),('expired', "منقضی شده")
     ]  
     status=models.CharField(max_length=20,choices=status_choices,default='cart')  
     appointment = models.ForeignKey(appointmentClass, on_delete=models.CASCADE, verbose_name="قرار ملاقات",related_name='ap')

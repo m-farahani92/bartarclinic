@@ -144,7 +144,7 @@
                         {{ reservation.appointment.schedule.date }}
                     </h6>
                 {%endfor%}
-                    <a href="checkoutR/" class="btn btn-sm btn-outline-primary">
+                    <a href="/checkoutR/" class="btn btn-sm btn-outline-primary">
                         پرداخت
                     </a>
                 </li>
@@ -161,7 +161,7 @@
                         {{ i.service.srv.first.startw }}
                     </h6>
                 {%endfor%}
-                    <a href="checkout/" class="btn btn-sm btn-outline-primary">
+                    <a href="/checkout/" class="btn btn-sm btn-outline-primary">
                         پرداخت
                     </a>
                 </li>
@@ -181,24 +181,36 @@
 </nav>
 
 <!-- Fixed Bottom Bar ( mobileshow ) -->
+<!-- Fixed Bottom Bar ( mobileshow ) -->
 <div class="d-lg-none fixed-bottom  bg-white shadow-lg py-2">
+    {%if user.is_authenticated%}
+        <div class="container d-flex justify-content-around">
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#searchModal">
+                <i class="fa fa-search"></i>
+            </button>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#bagModal">
+                <a class="fa fa-calendar" href="/cart/"></a>
+            </button>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#userModal">
+                <a class="fa fa-user" href="{% url 'panel' %}"></a>
+            </button>
+            <button type="submit" class="btn btn-outline-dark ms-2" >
+                <a class="fas fa-sign-out-alt" href="/logout"></a>
+            </button>
+    {%else%}
     <div class="container d-flex justify-content-around">
-        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#searchModal">
-            <i class="fa fa-search"></i>
-        </button>
-        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#bagModal">
-            <i class="fa fa-calendar"></i>
-        </button>
-        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#userModal">
-            <i class="fa fa-user"></i>
-        </button>
-        {%if user.is_authenticated%}
-        <button type="submit" class="btn btn-outline-dark ms-2" >
-            <a class="fas fa-sign-out-alt" href="/logout"></a>
-        </button>
-    {%endif%}
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#searchModal">
+                <i class="fa fa-search"></i>
+            </button>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#bagModal">
+                <i class="fa fa-calendar"></i>
+            </button>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#userModal">
+                <i class="fa fa-user"></i>
+            </button>
+        {%endif%}
+        </div>
     </div>
-</div>
 
     <!-- Navbar End -->
 

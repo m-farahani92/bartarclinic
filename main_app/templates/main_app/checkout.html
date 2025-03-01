@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block "titlepage2" %}
-ثبت نام کارگاه
+صورتحساب و تایید نهایی
 {% endblock %}
 <!-- content Start -->
 {% block "content" %}
@@ -38,7 +38,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for i in o.items.all %}
+                    {% for i in order.items.all %}
                     <tr>
                         <td>{{ i.service.title }}</td>
                         <td>{{ i.service.srv.first.startw }}</td>

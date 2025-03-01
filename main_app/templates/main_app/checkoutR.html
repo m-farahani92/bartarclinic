@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block "titlepage2" %}
-رزرو نوبت
+صورتحساب و تایید نهایی
 {% endblock %}
 <!-- content Start -->
 {% block "content" %}
@@ -40,11 +40,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for reservation in reservations %}
+                    {% for reservation in reservation %}
 
                     <tr>
                         <td>{{ reservation.user.username }}</td>
-                        <td>{{ reservation.status}}</td>
+                        <td>{{ reservation.get_status_display}}</td>
                         <td>{{ reservation.appointment.therapeutist.name }}
                         <td>{{ reservation.appointment.schedule.date }}</td>
                         <td>{{ reservation.appointment.schedule.start_time }} - {{ reservation.appointment.schedule.end_time }}</td>

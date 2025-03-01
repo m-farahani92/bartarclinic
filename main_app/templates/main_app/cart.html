@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block "titlepage" %}
-ثبت نام کارگاه
+ ثبت نام کارگاه
 {% endblock %}
 
 {% block "homepage" %}
@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block "titlepage2" %}
-ثبت نام کارگاه
+جزئیات ثبت نام کارگاه
 {% endblock %}
 <!-- content Start -->
 {% block "content" %}
@@ -38,7 +38,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for i in o.items.all %}
+                    {% for i in order.items.all %}
                     <tr>
                         <td>{{ i.service.title }}</td>
                         <td>{{ i.service.srv.first.startw }}</td>
@@ -62,7 +62,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td></td>
+                        <td>{{quan}}</td>
                         <td>{{ sm }} تومان</td>
                     </tr>
                 </tbody>
